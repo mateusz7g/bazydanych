@@ -1,0 +1,12 @@
+CREATE TABLE postac
+(
+	id_postaci INT AUTO_INCREMENT PRIMARY KEY, 
+	nazwa VARCHAR(40), 
+	rodzaj ENUM('wiking','ptak','kobieta'), 
+	data_ur DATE, wiek INT UNSIGNED);
+)
+
+INSERT INTO postac (nazwa, rodzaj, data_ur, wiek) VALUES 
+	('Bjorn', 'wiking', '1988-04-14', '32');
+	('Drozd', 'ptak', '2011-07-20', '9');
+	('Tesciowa', 'kobieta', '1932-02-08', '88');
