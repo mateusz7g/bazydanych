@@ -32,5 +32,40 @@ ON DELETE CASCADE ON PUDATE CASCADE;
 ALTER TABLE walizka ALTER kolor SET DEFAULT 'rozowy';
 
 INSERT INTO walizka (pojemnosc, kolor, id_wlasciciela) VALUES
-	('60','czerwony','9');
-	('35','zolty','7');
+	('60','czerwony','3');
+	('35','zolty','1');
+
+
+3#
+
+CREATE TABLE izba 
+(
+	adres_budynku VARCHAR(40), 
+	nazwa_izby VARCHAR(40), 
+	CONSTRAINT id_izby PRIMARY KEY (adres_budynku, nazwa_izby), 
+	metraz INT UNSIGNED,
+	wlasciciel_id_postaci INT,
+	FOREIGN KEY (wlasciciel_id_postaci) REFERENCES postac(id_postaci) ON DELETE SET NULL
+);
+
+ALTER TABLE izba ADD kolor_izby VARCHAR(40) DEFAULT 'czarny';
+
+INSERT INTO izba (adres_budynku, nazwa_izby, metraz, wlasciciel_id_postaci, kolor_izby) VALUES ('Sloneczna 2','spizarnia','30','1','niebieski');
+
+
+4#
+
+CREATE TABLE przetwory
+(
+	id_przetworu INT PRIMARY KEY, 
+	rok produkcji YEAR DEFAULT '2020', 
+	id_wykonawcy_id_postac INT,
+	FOREIGN KEY (id_wykonawcy_id_postaci) REFERENCES postac(id_postaci),
+	zawartosc CHAR(30),
+	dodatek CHAR(30) DEFAULT 'papryczka_chilli',
+	id_konsumenta_id_postaci INT, FOREIGN KEY(id_konsumenta_id_postaci) REFERENCES postac(id_postaci)
+);
+
+INSERT INTO przetwory(rok_produkcji, id_wykonawcy_id_postaci, zawartosc, dodatek, id_konsumenta_id_postaci) VALUES ('2020','3','bigos','papryczka_chilli','1');
+
+
