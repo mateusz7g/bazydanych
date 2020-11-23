@@ -76,3 +76,17 @@ INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Darek','wiking','1984-
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Jarek','wiking','1984-02-07','39');
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Bolek','wiking','1984-02-07','31');
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Lolek','wiking','1984-02-07','41');
+
+CREATE TABLE statek
+(
+	nazwa_statku VARCHAR(40) PRIMARY KEY,
+	rodzaj_statku ENUM('wioslowy','zaglowy'),
+	data_wodowania DATE, 
+	max_ladownosc INT UNSIGNED
+);
+
+
+INSERT INTO statek(nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('Albatros','wioslowy','1998-05-09','908');
+INSERT INTO statek(nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('Burza','zaglowy','1992-02-19','1002');
+
+ALTER TABLE postac ADD postac_statek INT, FOREIGN KEY (postac_statek) REFERENCES statek(nazwa_statku);
