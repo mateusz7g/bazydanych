@@ -69,3 +69,10 @@ CREATE TABLE przetwory
 INSERT INTO przetwory(rok_produkcji, id_wykonawcy_id_postaci, zawartosc, dodatek, id_konsumenta_id_postaci) VALUES ('2020','3','bigos','papryczka_chilli','1');
 
 
+5#
+
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Marek','wiking','1984-02-07','36');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Darek','wiking','1984-02-07','38');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Jarek','wiking','1984-02-07','39');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Bolek','wiking','1984-02-07','31');
+INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Lolek','wiking','1984-02-07','41');
