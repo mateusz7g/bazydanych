@@ -29,8 +29,10 @@ ADD FOREIGN KEY (id_wlasciciela)
 REFERENCES postac(id_postaci)
 ON DELETE CASCADE ON PUDATE CASCADE;
 
+b)
 ALTER TABLE walizka ALTER kolor SET DEFAULT 'rozowy';
 
+c)
 INSERT INTO walizka (pojemnosc, kolor, id_wlasciciela) VALUES
 	('60','czerwony','3');
 	('35','zolty','1');
@@ -48,8 +50,10 @@ CREATE TABLE izba
 	FOREIGN KEY (wlasciciel_id_postaci) REFERENCES postac(id_postaci) ON DELETE SET NULL
 );
 
+b)
 ALTER TABLE izba ADD kolor_izby VARCHAR(40) DEFAULT 'czarny';
 
+c)
 INSERT INTO izba (adres_budynku, nazwa_izby, metraz, wlasciciel_id_postaci, kolor_izby) VALUES ('Sloneczna 2','spizarnia','30','1','niebieski');
 
 
@@ -66,17 +70,20 @@ CREATE TABLE przetwory
 	id_konsumenta_id_postaci INT, FOREIGN KEY(id_konsumenta_id_postaci) REFERENCES postac(id_postaci)
 );
 
+b)
 INSERT INTO przetwory(rok_produkcji, id_wykonawcy_id_postaci, zawartosc, dodatek, id_konsumenta_id_postaci) VALUES ('2020','3','bigos','papryczka_chilli','1');
 
 
 5#
 
+a)
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Marek','wiking','1984-02-07','36');
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Darek','wiking','1984-02-07','38');
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Jarek','wiking','1984-02-07','39');
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Bolek','wiking','1984-02-07','31');
 INSERT INTO postac(nazwa, rodzaj, data_ur, wiek) VALUES ('Lolek','wiking','1984-02-07','41');
 
+b)
 CREATE TABLE statek
 (
 	nazwa_statku VARCHAR(40) PRIMARY KEY,
@@ -85,8 +92,27 @@ CREATE TABLE statek
 	max_ladownosc INT UNSIGNED
 );
 
-
+c)
 INSERT INTO statek(nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('Albatros','wioslowy','1998-05-09','908');
 INSERT INTO statek(nazwa_statku, rodzaj_statku, data_wodowania, max_ladownosc) VALUES ('Burza','zaglowy','1992-02-19','1002');
 
-ALTER TABLE postac ADD postac_statek INT, FOREIGN KEY (postac_statek) REFERENCES statek(nazwa_statku);
+d)
+ALTER TABLE postac ADD funkcja CHAR(40);
+
+e)
+UPDATE postac SET funkcja='kapitan' WHERE nazwa='Bjorn';
+
+f)
+ALTER TABLE postac ADD postac_statek VARCHAR(40), FOREIGN KEY (postac_statek) REFERENCES statek(nazwa_statku);
+
+g)
+UPDATE postac SET postac_statek='Albatros' WHERE id_postac=2;
+UPDATE postac SET postac_statek='Albatros' WHERE id_postac=3;
+UPDATE postac SET postac_statek='Burza' WHERE id_postac=4;
+UPDATE postac SET postac_statek='Burza' WHERE id_postac=5;
+UPDATE postac SET postac_statek='Burza' WHERE id_postac=6;
+UPDATE postac SET postac_statek='Burza' WHERE id_postac=7;
+UPDATE postac SET postac_statek='Burza' WHERE id_postac=8;
+
+h)
+DROP TABLE izba;
