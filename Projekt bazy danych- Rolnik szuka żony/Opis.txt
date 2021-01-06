@@ -1,0 +1,5 @@
+Rolnik szuka żony, czyli produkcja filmowa mająca na celu 
+pomóc samotnym kawalerom ze wsi odnaleźć swoją drugą połówkę.
+Baza danych składa się z 5 tabel. Zawiera informacje o poszczególnych
+odcinkach, do których przyporządkowane są dane rolników i ich kandydatek
+oraz pracowników.
