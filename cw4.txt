@@ -1,0 +1,29 @@
+1#
+
+a) 
+SELECT AVG(waga) FROM kreatura WHERE rodzaj='wiking';
+
+b)
+SELECT rodzaj, COUNT(nazwa) AS liczba_kreatur, AVG(waga) AS srednia_waga FROM kreatura GROUP BY rodzaj;
+
+c)
+SELECT rodzaj, AVG(2020-YEAR(dataUr)) AS 'srednia wieku' FROM kreatura GROUP BY rodzaj;
+
+2#
+
+a)
+SELECT rodzaj, SUM(waga*ilosc) AS 'suma wag' FROM zasob GROUP BY rodzaj;
+
+b)
+SELECT nazwa, AVG(waga*ilosc) AS srednia_waga FROM zasob WHERE ilosc>=4 GROUP BY nazwa HAVING SUM(waga*ilosc)>10;
+
+c)
+SELECT rodzaj, nazwa FROM zasob GROUP BY rodzaj, nazwa HAVING MIN(ilosc)>1;
+
+3#
+
+a)
+SELECT kreatura.nazwa, ekwipunek.ilosc FROM kreatura JOIN kreatura.idKreatury = ekwipunek.idKreatury;
+
+b)
+SELECT kreatura.rodzaj, AVG(zasob.waga*ekwipunek.ilosc) AS 'Srednia waga zasobow' FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj != 'waz' AND kreatura.rodzaj != 'malpa' AND ekwipunek.ilosc < 30 GROUP BY rodzaj;
