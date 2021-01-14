@@ -1,0 +1,51 @@
+1#
+
+a) 
+SELECT AVG(waga) FROM kreatura WHERE rodzaj='wiking';
+
+b)
+SELECT rodzaj, COUNT(nazwa) AS liczba_kreatur, AVG(waga) AS srednia_waga FROM kreatura GROUP BY rodzaj;
+
+c)
+SELECT rodzaj, AVG(2020-YEAR(dataUr)) AS 'srednia wieku' FROM kreatura GROUP BY rodzaj;
+
+2#
+
+a)
+SELECT rodzaj, SUM(waga*ilosc) AS 'suma wag' FROM zasob GROUP BY rodzaj;
+
+b)
+SELECT nazwa, AVG(waga*ilosc) AS srednia_waga FROM zasob WHERE ilosc>=4 GROUP BY nazwa HAVING SUM(waga*ilosc)>10;
+
+c)
+SELECT rodzaj, nazwa FROM zasob GROUP BY rodzaj, nazwa HAVING MIN(ilosc)>1;
+
+3#
+
+a) 
+SELECT kreatura.nazwa, SUM(ekwipunek.ilosc) AS 'Ilosc' FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury GROUP BY nazwa;
+
+b)
+SELECT kreatura.nazwa, zasob.nazwa AS 'Nazwa zasobu' FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu ORDER BY kreatura.nazwa ASC;
+
+c)
+SELECT kreatura.nazwa FROM kreatura LEFT JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury WHERE ekwipunek.idEkwipunku is NULL;
+
+4#
+
+a)
+SELECT kreatura.nazwa, zasob.nazwa FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj = 'wiking' AND YEAR(kreatura.dataUr) BETWEEN 1670 AND 1679;
+
+b)
+SELECT kreatura.nazwa FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE zasob.rodzaj = 'jedzenie' ORDER BY kreatura.dataUr ASC LIMIT 5;
+
+c)
+SELECT CONCAT(k.nazwa, "-" ,k1.nazwa) AS 'Nazwa' FROM kreatura k, kreatura k1 WHERE k.idKreatury = k1.idKreatury + 5;
+
+5#
+
+a)
+SELECT kreatura.nazwa, ekwipunek.ilosc FROM kreatura JOIN kreatura.idKreatury = ekwipunek.idKreatury;
+
+b)
+SELECT kreatura.rodzaj, AVG(zasob.waga*ekwipunek.ilosc) AS 'Srednia waga zasobow' FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj != 'waz' AND kreatura.rodzaj != 'malpa' AND ekwipunek.ilosc < 30 GROUP BY rodzaj;
