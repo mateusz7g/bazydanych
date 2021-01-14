@@ -45,7 +45,4 @@ SELECT CONCAT(k.nazwa, "-" ,k1.nazwa) AS 'Nazwa' FROM kreatura k, kreatura k1 WH
 5#
 
 a)
-SELECT kreatura.nazwa, ekwipunek.ilosc FROM kreatura JOIN kreatura.idKreatury = ekwipunek.idKreatury;
-
-b)
 SELECT kreatura.rodzaj, AVG(zasob.waga*ekwipunek.ilosc) AS 'Srednia waga zasobow' FROM kreatura JOIN ekwipunek ON ekwipunek.idKreatury = kreatura.idKreatury JOIN zasob ON ekwipunek.idZasobu = zasob.idZasobu WHERE kreatura.rodzaj != 'waz' AND kreatura.rodzaj != 'malpa' AND ekwipunek.ilosc < 30 GROUP BY rodzaj;
